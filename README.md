@@ -7,5 +7,6 @@ The technical stack is :
 - Spring Data JPA with Hibernate implementatin to manage database 
 - Spring Security to provide the security layer
 - Web server : tomcat 9
+- Database : MySQL 8.0.18
 
 Have fun :-)
