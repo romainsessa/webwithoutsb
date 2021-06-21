@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.romain.models.User;
 import com.romain.repositories.UserRepository;
@@ -28,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		User user = repository.findByName(username);
 		
 		// If the password is plain text in database (not encoded), uncomment the following line. 
-		//user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		
 		// Building a Spring Security User with the local user information
 		return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), getGrantedAuthorities());
